@@ -1,0 +1,22 @@
+<html  xmlns:th="http://www.thymeleaf.org" 
+       xmlns:layout = "http://wwww.ultraq.net.nz/thymeleaf/layout"
+       layout:decorate = ~{layout}>
+
+    <main layout:fragment="main">       
+        <div class="bg-secondary mt-5 rounded" style="--bs-bg-opacity: .1;">
+            <form action="" class ="p-5" method="POST">
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">UserName</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">                
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="exampleInputPassword1">
+            </div>            
+            <button type="submit" class="btn btn-primary">Iniciar session</button>
+        </form>
+        </div>
+        
+
+    </main>
+</html>
