@@ -2,21 +2,39 @@
        xmlns:layout = "http://wwww.ultraq.net.nz/thymeleaf/layout"
        layout:decorate = ~{layout}>
 
-    <main layout:fragment="main">       
-        <div class="bg-secondary mt-5 rounded" style="--bs-bg-opacity: .1;">
-            <form action="" class ="p-5" method="POST">
+    <main layout:fragment="main">
+        <div th:if="${error!=null}" class = "p-3 mt-3 bg-danger col-12 rounded text-center">
+            <h3 th:text="${error}"></h3>
+        </div>
+          <div class="mt-5 rounded" style="background-color: rgba(255, 255, 255, 0.5);">
+              
+            <form th:action="@{/AficionPelis/Login}" class ="p-5" method="POST" th:object="${auth}">
+                <h3 class = "text-center ">Inicia Session</h3>
             <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">UserName</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">                
+                <label for="userName" class="form-label text-center fs-5" onclick="" >UserName</label>
+                <input type="email" class="form-control" id="userName" aria-describedby="emailHelp" th:field="*{UserName}">                
             </div>
             <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" id="exampleInputPassword1">
+                <label for="password" class="form-label text-center fs-5">Contraseña</label>
+                <input type="password" class="form-control" id="Password" th:field="*{Password}">
             </div>            
-            <button type="submit" class="btn btn-primary">Iniciar session</button>
+            <button type="submit" class="btn btn-warning col-12" id ="submit">Enviar</button>
         </form>
-        </div>
-        
-
+        </div>        
+        <script>
+            $(document).ready(()=>{
+//               $("#submit").mouseover(()=>{
+//                  if(($("#userName").value()() !=="") && ($("#password").value() !== "")){
+//                      $("#submit").prop("disabled", true);                      
+//                  }else{
+//                      $("#submit").prop("disabled", false);     
+//                      
+//                    }                  
+//               });               
+                
+                
+            });
+            
+        </script>
     </main>
 </html>
