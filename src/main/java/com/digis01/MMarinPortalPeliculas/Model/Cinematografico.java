@@ -12,7 +12,16 @@ public class Cinematografico {
     private String poster_path;
     private String  vote_average;
     private String vote_count;
+    public Reaccion reaccion;
 
+    public Reaccion getReaccion() {
+        return reaccion;
+    }
+
+    public void setReaccion(Reaccion reaccion) {
+        this.reaccion = reaccion;
+    }
+    
     public String getAdult() {
         return adult;
     }

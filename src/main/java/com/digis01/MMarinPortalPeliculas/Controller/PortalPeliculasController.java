@@ -1,9 +1,11 @@
 package com.digis01.MMarinPortalPeliculas.Controller;
 
 import com.digis01.MMarinPortalPeliculas.Model.Pelicula;
+import com.digis01.MMarinPortalPeliculas.Model.Reaccion;
 import com.digis01.MMarinPortalPeliculas.Model.ResultMedia;
 import com.digis01.MMarinPortalPeliculas.Model.Usuario;
 import jakarta.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Map;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -118,7 +120,18 @@ public class PortalPeliculasController {
                     new HttpEntity(headers), 
                     new ParameterizedTypeReference<ResultMedia<Pelicula>>(){});
             ResultMedia<Pelicula> resultPeliculas = responsePeliculas.getBody();
-            model.addAttribute("peliculas", resultPeliculas.results);
+            List<Pelicula> peliculas = resultPeliculas.results;
+            for (Pelicula pelicula : peliculas) {
+                ResponseEntity<Reaccion> resultEstatus = this.restTemplate.exchange(
+                        this.BASEURL + "/movie/"+pelicula.getId()+"/account_states?session_id="+session.getAttribute("session_id").toString(),
+                        HttpMethod.GET,
+                        new HttpEntity(headers),
+                        new ParameterizedTypeReference<Reaccion>(){});
+                pelicula.reaccion = resultEstatus.getBody();   
+                
+            }
+            model.addAttribute("peliculas", peliculas);
+            model.addAttribute("session_id", session.getAttribute("session_id"));
             return "Popular";
         } catch (Exception e) {
             return "";
