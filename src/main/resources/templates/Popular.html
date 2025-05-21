@@ -1,0 +1,26 @@
+
+<html  xmlns:th="http://www.thymeleaf.org" 
+       xmlns:layout = "http://wwww.ultraq.net.nz/thymeleaf/layout"
+       layout:decorate = ~{layout}>
+    <main layout:fragment ="main">
+        <h1 class="pt-3">Lo más popular</h1>
+        <div class = "container mt-5 p-3 rounded" style="background-color: rgba(255,
+                 255, 255, 0.2);">
+            <h2>Peliculas</h>
+            <div class="row flex-nowrap overflow-auto p-3">
+                <div class ="col-2 btn btn-outline-light p-1 me-3" th:each="pelicula : ${peliculas}" >
+                    <img th:src = "|https://media.themoviedb.org/t/p/w600_and_h900_bestv2${pelicula.poster_path}|" 
+                          class="img-fluid"/>
+                    <span class = "fs-5">Rescate implacable</span>
+                    <span class  ="fs-6"> 2025-04-30</span>
+                    <div class = "mt-2 mb-2 row fs-4">
+                        <a class ="col-4 "><i class="bi bi-heart-fill"></i></a>
+                        <a class ="col-4 "><i class="bi bi-person-lines-fill"></i></a>
+                         <a class ="col-4"><i class="bi bi-bookmark-fill"></i></a>
+                         
+                    </div>
+                </div>              
+            </div>
+        </div>
+    </main>
+</html>
