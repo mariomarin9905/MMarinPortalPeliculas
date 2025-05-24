@@ -48,15 +48,27 @@
                     data:body,
                     datatype: "json",
                     success:(data)=>{
-                                                
+                       if(!data.success){
+                            if(elemento.checked){
+                                elemento.checked = false;
+                            }else{
+                                elemento.checked = false;
+                            }                        
+                       }        
                     },
                     error:()=>{
+                        alert("Error en el Servidor");
+                        if(elemento.checked){
+                                elemento.checked = false;
+                            }else{
+                                elemento.checked = false;
+                            }
                         
                     }
                     
             });
-        }   
-            function clickFavorito(elemento){          
+            }   
+            function clickFavorito(elemento){       
                
               actualizaFavorito(elemento);
             }

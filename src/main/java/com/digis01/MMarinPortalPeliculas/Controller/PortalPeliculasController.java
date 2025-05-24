@@ -136,13 +136,25 @@ public class PortalPeliculasController {
     
     @PostMapping("/AddFavorite")
     @ResponseBody()
-    public Response AddFavorite(@RequestBody Reaccion reaccion, HttpSession session){   
+    public Response AddFavorite(@RequestBody Reaccion reaccion, HttpSession session){ 
+        //PROBAR    
         Response response = new Response();
         try {
-            this.restTemplate = new RestTemplate();
-           return response;
-        } catch (HttpStatusCodeException e) {
             
+            this.restTemplate = new RestTemplate();
+            HttpHeaders headers = new HttpHeaders();
+            headers.setBearerAuth(this.APIKEY);
+            ResponseEntity<Response> responseFavorite = this.restTemplate.exchange(
+                    this.BASEURL+"/account/"+session.getAttribute("account_id").toString()+"/favorite?session_id="+session.getAttribute("session_id").toString(), 
+                    HttpMethod.GET, 
+                    new HttpEntity(headers), 
+                    new ParameterizedTypeReference<Response>(){});
+            
+            
+           response = responseFavorite.getBody();           
+           return response;
+        } catch (HttpStatusCodeException e) {           
+            response.status_message = e.getLocalizedMessage();
             return response;
         }
     }
