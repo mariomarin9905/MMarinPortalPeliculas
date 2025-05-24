@@ -3,11 +3,20 @@ package com.digis01.MMarinPortalPeliculas.Model;
 
 
 public class Usuario {
+    private int id;
     private boolean success;
     private String username;
     private String password;    
     private String request_token;
     private String session_id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }   
 
     public void setSuccess(boolean success){
         this.success = success;
